@@ -1,0 +1,36 @@
+void QuickSort(int* a, int low, int high){
+    int i = low;
+    int j = high;
+    int temp = a[i];
+    if(low<high)
+    {
+        while(i<j)
+        {
+            while((a[j]>=temp)&&(i<j))
+            {
+                j--;
+            }
+            a[i] = a[j];
+            while((a[i]<=temp)&&(i<j))
+            {
+                i++;
+            }
+            a[j] = a[i];
+        }
+        a[i] = temp;
+        QuickSort(a,low,i-1);
+        QuickSort(a,j+1,high);
+    }
+    else
+    {
+        return;
+    }
+}
+
+int singleNumber(int* nums, int numsSize) {
+    QuickSort(nums,0,numsSize-1);
+    for(int i=0; i<numsSize; i=i+3){
+        if  ((nums[i]!=nums[i+1])||(i==(numsSize-1)))
+            return nums[i];
+    }
+}
